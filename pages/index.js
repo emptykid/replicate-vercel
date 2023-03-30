@@ -17,6 +17,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         prompt: e.target.prompt.value,
+        model: e.target.model.value
       }),
     });
     let prediction = await response.json();
@@ -45,26 +46,33 @@ export default function Home() {
   return (
     <div className="container max-w-2xl mx-auto p-5">
       <Head>
-        <title>Replicate + Next.js</title>
+        <title>AI - Text2Image</title>
       </Head>
 
-      <h1 className="py-6 text-center font-bold text-2xl">
-        Dream something with{" "}
-        <a href="https://replicate.com/stability-ai/stable-diffusion">
-          Stable Diffusion
-        </a>
-      </h1>
+      <h1 className="py-6 text-center font-bold text-2xl"> 输入文字，生成图片 </h1>
 
-      <form className="w-full flex" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="flex-grow"
-          name="prompt"
-          placeholder="Enter a prompt to display an image"
-        />
-        <button className="button" type="submit">
-          Go!
-        </button>
+      <form className="w-full flex flex-col" onSubmit={handleSubmit}>
+        <div className={"mt-2 mb-2"}>选择模型：
+          <select name="model">
+            <option value="1">Stable Diffusion</option>
+            <option value="2">Lora</option>
+            <option value="3">Midjourney Diffusion</option>
+            <option value="4">Openjourney</option>
+          </select>
+        </div>
+
+        <p>使用英文输入</p>
+        <div className={"w-full flex"}>
+          <input
+              type="text"
+              className="flex-grow"
+              name="prompt"
+              placeholder="Enter a prompt to display an image"
+          />
+          <button className="button" type="submit">
+            Go!
+          </button>
+        </div>
       </form>
 
       {error && <div>{error}</div>}

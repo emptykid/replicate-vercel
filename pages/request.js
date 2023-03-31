@@ -3,11 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 
 export default function Request() {
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState("");
 
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setResult("");
 
         const res = await fetch("/api/proxy", {
             method: "POST",
@@ -25,7 +26,6 @@ export default function Request() {
         const data = await res.json();
         if (data.success) {
             setResult(data.data);
-            document.getElementById("result").innerText = data.data;
         }
     }
 
@@ -47,7 +47,7 @@ export default function Request() {
             </form>
             <div className={"mt-3"}>
                 <h2>返回结果</h2>
-                {result != null && <pre className={"mt-5"}>
+                {result !== "" && <pre className={"mt-5"}>
                     <code id={"result"} className={"text-gray-500 border w-full px-4 py-4"}>
                         {result}
                     </code>

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         headers: JSON.parse(header),
     }
     if (method === 'POST') {
-        params.body = body;
+        params.body = JSON.stringify(JSON.parse(body));
     }
     const response = await fetch(url, params);
     const data = await response.text();

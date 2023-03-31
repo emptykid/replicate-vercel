@@ -58,6 +58,7 @@ export default function Home() {
             <option value="2">Lora</option>
             <option value="3">Midjourney Diffusion</option>
             <option value="4">Openjourney</option>
+            <option value="5">Midjourney</option>
           </select>
         </div>
 

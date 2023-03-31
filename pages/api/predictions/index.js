@@ -74,7 +74,7 @@ async function imagine(prompt) {
   const response = await fetch(`https://discord.com/api/v9/interactions`, {
     method: "POST",
     headers: {
-      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GKCOlZ.-AhhNJ8kIGfu6r2ktLYR-gDbGJS4SQF7LreK70",
+      "authorization": "Bot MTA2Mjk5OTAxNjk3MzAyMTIzNg.G7LW6u.jY0ZkLxfSdOmG_JxjOUldFmWoLIDzjSMoCsEQM",
       "dnt": "1",
       "referer": "https://discord.com/channels/1063002995949830194/1063002995949830197",
       "origin": "https://discord.com",

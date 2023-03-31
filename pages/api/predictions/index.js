@@ -69,71 +69,28 @@ async function getRecentJobs() {
 }
 
 async function imagine(prompt) {
+  const formData = new FormData();
+  formData.append("payload_json", JSON.stringify({"type":2,"application_id":"936929561302675456","guild_id":"1063002995949830194","channel_id":"1063002995949830197","session_id":"2e902f10ab4b1aeebe8ab8985f203ece","data":{"version":"1077969938624553050","id":"938956540159881230","name":"imagine","type":1,"options":[{"type":3,"name":"prompt","value": prompt}],"application_command":{"id":"938956540159881230","application_id":"936929561302675456","version":"1077969938624553050","default_permission":true,"default_member_permissions":null,"type":1,"nsfw":false,"name":"imagine","description":"Create images with Midjourney","dm_permission":true,"options":[{"type":3,"name":"prompt","description":"The prompt to imagine","required":true}]},"attachments":[]},"nonce":"1091253425397563392"}));
   const response = await fetch(`https://discord.com/api/v9/interactions`, {
     method: "POST",
     headers: {
-      "cookie": "__dcfduid=5a9851a0b8fa11ed96404f595f625378; __sdcfduid=5a9851a1b8fa11ed96404f595f625378ecd62cc13cd3dce84e7558469e513ad4922e6c0c8b5dabfc7a0a8daf0058b5e3; _gcl_au=1.1.363406540.1677762094; _ga=GA1.1.902467065.1677762095; locale=en-US; __cfruid=cac2e1f1cc0b119875f440c2925e69601c5a44f2-1680142902; OptanonConsent=isIABGlobal=false&datestamp=Fri+Mar+31+2023+10%3A52%3A34+GMT%2B0800+(China+Standard+Time)&version=6.33.0&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1&AwaitingReconsent=false; _ga_Q149DFWHT7=GS1.1.1680231156.4.1.1680231171.0.0.0",
+      "cookie": "__dcfduid=5a9851a0b8fa11ed96404f595f625378; __sdcfduid=5a9851a1b8fa11ed96404f595f625378ecd62cc13cd3dce84e7558469e513ad4922e6c0c8b5dabfc7a0a8daf0058b5e3; _gcl_au=1.1.363406540.1677762094; _ga=GA1.1.902467065.1677762095; __cfruid=cac2e1f1cc0b119875f440c2925e69601c5a44f2-1680142902; OptanonConsent=isIABGlobal=false&datestamp=Fri+Mar+31+2023+10:52:34+GMT+0800+(China+Standard+Time)&version=6.33.0&hosts=&landingPath=NotLandingPage&groups=C0001:1,C0002:1,C0003:1&AwaitingReconsent=false; _ga_Q149DFWHT7=GS1.1.1680231156.4.1.1680231171.0.0.0; __cf_bm=DJz9qnU0HbQSz0hlFkxF8LucgdOJAlSTycM2LVrN0LM-1680245163-0-AYESkg2BHUT2uvIM0kV+rlwEdfBfTqm2IAQYQg2eEeZ+tIcgjrKyWuMRtbJnN+S20HD3Ds46VITiKceoMmiGwXn58lJkds2ywmszxOOsB1LsbKYKFUl614ADVbdjN8yGKg==; locale=en-US",
       "authority": "discord.com",
       "accept": "*/*",
       "accept-language": "en-US,en;q=0.9",
-      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GkWY8t.W8Oi0kV802t8EYAPs13J7BLs8uDgh68DSOhfL0",
-      "content-type": "application/json",
+      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.G4KOb_.Dej5_PIrtfUpgrsfWlzBRqfBTNQO6rfh21OlMU",
       "dnt": "1",
+      "referer": "https://discord.com/channels/1063002995949830194/1063002995949830197",
       "origin": "https://discord.com",
       "sec-ch-ua-mobile": "?0",
       "sec-fetch-dest": "empty",
       "sec-fetch-mode": "cors",
       "sec-fetch-site": "same-origin",
-      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
       "x-debug-options": "bugReporterEnabled",
       "x-discord-locale": "en-US",
     },
-    body: JSON.stringify({
-      json: {
-        "type":2,
-        "application_id":"936929561302675456",
-        "channel_id":"1063002898088333332",
-        "session_id":"af5e3a4d3257b10c8a55bbf213d5e1a1",
-        "data":{
-          "version":"1077969938624553050",
-          "id":"938956540159881230",
-          "name":"imagine",
-          "type":1,
-          "options":[
-            {
-              "type":3,
-              "name":"prompt",
-              "value": prompt
-            }
-          ],
-          "application_command":{
-            "id":"938956540159881230",
-            "application_id":"936929561302675456",
-            "version":"1077969938624553050",
-            "default_permission":true,
-            "default_member_permissions":null,
-            "type":1,
-            "nsfw":false,
-            "name":"imagine",
-            "description":"Create images with Midjourney",
-            "dm_permission":true,
-            "options":[
-              {
-                "type":3,
-                "name":"prompt",
-                "description":"The prompt to imagine",
-                "required":true
-              }
-            ]
-          },
-          "attachments":[
-
-          ]
-        },
-        "nonce":"1091202282663444480"
-      }
-
-    })
+    body: formData
   });
   return await response.text();
 

@@ -74,11 +74,7 @@ async function imagine(prompt) {
   const response = await fetch(`https://discord.com/api/v9/interactions`, {
     method: "POST",
     headers: {
-      "cookie": "__dcfduid=5a9851a0b8fa11ed96404f595f625378; __sdcfduid=5a9851a1b8fa11ed96404f595f625378ecd62cc13cd3dce84e7558469e513ad4922e6c0c8b5dabfc7a0a8daf0058b5e3; _gcl_au=1.1.363406540.1677762094; _ga=GA1.1.902467065.1677762095; __cfruid=cac2e1f1cc0b119875f440c2925e69601c5a44f2-1680142902; OptanonConsent=isIABGlobal=false&datestamp=Fri+Mar+31+2023+10:52:34+GMT+0800+(China+Standard+Time)&version=6.33.0&hosts=&landingPath=NotLandingPage&groups=C0001:1,C0002:1,C0003:1&AwaitingReconsent=false; _ga_Q149DFWHT7=GS1.1.1680231156.4.1.1680231171.0.0.0; __cf_bm=DJz9qnU0HbQSz0hlFkxF8LucgdOJAlSTycM2LVrN0LM-1680245163-0-AYESkg2BHUT2uvIM0kV+rlwEdfBfTqm2IAQYQg2eEeZ+tIcgjrKyWuMRtbJnN+S20HD3Ds46VITiKceoMmiGwXn58lJkds2ywmszxOOsB1LsbKYKFUl614ADVbdjN8yGKg==; locale=en-US",
-      "authority": "discord.com",
-      "accept": "*/*",
-      "accept-language": "en-US,en;q=0.9",
-      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.G4KOb_.Dej5_PIrtfUpgrsfWlzBRqfBTNQO6rfh21OlMU",
+      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GKCOlZ.-AhhNJ8kIGfu6r2ktLYR-gDbGJS4SQF7LreK70",
       "dnt": "1",
       "referer": "https://discord.com/channels/1063002995949830194/1063002995949830197",
       "origin": "https://discord.com",

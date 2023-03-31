@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-input {
+input, textarea, select {
   @apply border;
   @apply border-solid;
   @apply border-gray-300;

@@ -117,7 +117,7 @@ async function imagine(prompt) {
   const response = await fetch(`https://discord.com/api/v9/interactions`, {
     method: "POST",
     headers: {
-      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GBn38W.XWb9piRn9nqvV6w8QXFUpQ3RCyf_-00yGkcPQ0",
+      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GB53A_.LiBazfBXCvkFNd-9N_kDBp7jT-7Wm_NLviRDXI",
     },
     body: formData
   });

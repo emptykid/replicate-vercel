@@ -1,4 +1,5 @@
 import Replicate from "replicate";
+import {Client, Events, GatewayIntentsString} from "discord.js";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -70,21 +71,53 @@ async function getRecentJobs() {
 
 async function imagine(prompt) {
   const formData = new FormData();
-  formData.append("payload_json", JSON.stringify({"type":2,"application_id":"936929561302675456","guild_id":"1063002995949830194","channel_id":"1063002995949830197","session_id":"2e902f10ab4b1aeebe8ab8985f203ece","data":{"version":"1077969938624553050","id":"938956540159881230","name":"imagine","type":1,"options":[{"type":3,"name":"prompt","value": prompt}],"application_command":{"id":"938956540159881230","application_id":"936929561302675456","version":"1077969938624553050","default_permission":true,"default_member_permissions":null,"type":1,"nsfw":false,"name":"imagine","description":"Create images with Midjourney","dm_permission":true,"options":[{"type":3,"name":"prompt","description":"The prompt to imagine","required":true}]},"attachments":[]},"nonce":"1091253425397563392"}));
+  formData.append("payload_json", JSON.stringify({
+    "type":2,
+    "application_id":"936929561302675456",
+    "guild_id":"1063002995949830194",
+    "channel_id":"1063002995949830197",
+    "session_id":"2e902f10ab4b1aeebe8ab8985f203ece",
+    "data":{
+      "version":"1077969938624553050",
+      "id":"938956540159881230",
+      "name":"imagine",
+      "type":1,
+      "options":[
+        {
+          "type":3,
+          "name":"prompt",
+          "value": prompt
+        }
+      ],
+      "application_command":{
+        "id":"938956540159881230",
+        "application_id":"936929561302675456",
+        "version":"1077969938624553050",
+        "default_permission":true,
+        "default_member_permissions":null,
+        "type":1,
+        "nsfw":false,
+        "name":"imagine",
+        "description":"Create images with Midjourney",
+        "dm_permission":true,
+        "options":[
+          {
+            "type":3,
+            "name":"prompt",
+            "description":"The prompt to imagine",
+            "required":true
+          }
+        ]
+      },
+      "attachments":[
+
+      ]
+    },
+  }));
   const response = await fetch(`https://discord.com/api/v9/interactions`, {
     method: "POST",
     headers: {
-      "authorization": "Bot MTA2Mjk5OTAxNjk3MzAyMTIzNg.G7LW6u.jY0ZkLxfSdOmG_JxjOUldFmWoLIDzjSMoCsEQM",
-      "dnt": "1",
-      "referer": "https://discord.com/channels/1063002995949830194/1063002995949830197",
-      "origin": "https://discord.com",
-      "sec-ch-ua-mobile": "?0",
-      "sec-fetch-dest": "empty",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-site": "same-origin",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-      "x-debug-options": "bugReporterEnabled",
-      "x-discord-locale": "en-US",
+      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GBn38W.XWb9piRn9nqvV6w8QXFUpQ3RCyf_-00yGkcPQ0",
     },
     body: formData
   });

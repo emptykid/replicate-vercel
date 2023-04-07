@@ -5,6 +5,10 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
+const SERVER_ID = "1063002995949830194";
+const CHANNEL_ID = "1063002995949830197";
+const SALAI_TOKEN = "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GBkAET.Gkicz9DWQzVl8Xjj6_SMe73Nyw-RPMPUQbeeIY";
+
 export default async function handler(req, res) {
   if (!process.env.REPLICATE_API_TOKEN) {
     throw new Error(
@@ -25,8 +29,8 @@ export default async function handler(req, res) {
   if (model === 5) {
     //const data = await getRecentJobs();
     //console.log(data);
-    const r = await imagine("a cartoon rocket flying above cloud")
-    console.log(r);
+    const r = await imagine(req.body.prompt)
+    console.log(`imaging status: ${r}`);
     res.statusCode = 201;
     res.end(r);
   }
@@ -70,57 +74,55 @@ async function getRecentJobs() {
 }
 
 async function imagine(prompt) {
-  const formData = new FormData();
-  formData.append("payload_json", JSON.stringify({
-    "type":2,
-    "application_id":"936929561302675456",
-    "guild_id":"1063002995949830194",
-    "channel_id":"1063002995949830197",
-    "session_id":"2e902f10ab4b1aeebe8ab8985f203ece",
-    "data":{
-      "version":"1077969938624553050",
-      "id":"938956540159881230",
-      "name":"imagine",
-      "type":1,
-      "options":[
-        {
-          "type":3,
-          "name":"prompt",
-          "value": prompt
-        }
-      ],
-      "application_command":{
-        "id":"938956540159881230",
-        "application_id":"936929561302675456",
-        "version":"1077969938624553050",
-        "default_permission":true,
-        "default_member_permissions":null,
-        "type":1,
-        "nsfw":false,
-        "name":"imagine",
-        "description":"Create images with Midjourney",
-        "dm_permission":true,
-        "options":[
+  const payload = {
+    "type": 2,
+    "application_id": "936929561302675456",
+    "guild_id": SERVER_ID,
+    "channel_id": CHANNEL_ID,
+    "session_id": "0a010c9eaf31b12c8b2345c0d38bbb7c",
+    "data": {
+      "version": "1077969938624553050",
+      "id": "938956540159881230",
+      "name": "imagine",
+      "type": 1,
+      "options": [{ "type": 3, "name": "prompt", "value": prompt }],
+      "application_command": {
+        "id": "938956540159881230",
+        "application_id": "936929561302675456",
+        "version": "1077969938624553050",
+        "default_permission": true,
+        "default_member_permissions": null,
+        "type": 1,
+        "nsfw": null,
+        "name": "imagine",
+        "description": "There are endless possibilities...",
+        "dm_permission": true,
+        "options": [
           {
-            "type":3,
-            "name":"prompt",
-            "description":"The prompt to imagine",
-            "required":true
+            "type": 3,
+            "name": "prompt",
+            "description": "The prompt to imagine",
+            "required": true
           }
         ]
       },
-      "attachments":[
+      "attachments": []
+    }
+  };
 
-      ]
-    },
-  }));
-  const response = await fetch(`https://discord.com/api/v9/interactions`, {
+  const header = {
+    "authorization": SALAI_TOKEN
+  };
+
+  const formData = new FormData();
+  formData.append('payload_json', JSON.stringify(payload));
+
+  const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
-    headers: {
-      "authorization": "MTA2Mjk5OTAxNjk3MzAyMTIzNg.GB53A_.LiBazfBXCvkFNd-9N_kDBp7jT-7Wm_NLviRDXI",
-    },
+    headers: header,
     body: formData
   });
-  return await response.text();
+
+  return response.status;
 
 }
